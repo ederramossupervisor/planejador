@@ -43,6 +43,12 @@ body {
   flex-wrap: wrap;
 }
 
+.topo-acoes {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .eyebrow {
   margin: 0 0 2px;
   font-size: 12px;
