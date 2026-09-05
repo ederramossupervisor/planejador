@@ -6,8 +6,38 @@
 // de partida se a página for recarregada.
 // ============================================================
 const CONFIG = {
-  API_URL: "https://script.google.com/macros/s/AKfycbzZKFc08__uL3yL5u89G4g_pfEf-ZO8JG7r7e8KyDfc5nxg98D71630mIn3J-oc19WSnQ/exec", // ex: "https://script.google.com/macros/s/AKfycb.../exec"
+  API_URL: "", // ex: "https://script.google.com/macros/s/AKfycb.../exec"
 };
+
+// ---------- PWA: instalação e Service Worker ----------
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("service-worker.js").catch((erro) => {
+      console.error("Falha ao registrar o Service Worker:", erro);
+    });
+  });
+}
+
+let promptDeInstalacao = null;
+
+window.addEventListener("beforeinstallprompt", (evento) => {
+  evento.preventDefault();
+  promptDeInstalacao = evento;
+  document.getElementById("botao-instalar").hidden = false;
+});
+
+document.getElementById("botao-instalar").addEventListener("click", async () => {
+  if (!promptDeInstalacao) return;
+  promptDeInstalacao.prompt();
+  await promptDeInstalacao.userChoice;
+  promptDeInstalacao = null;
+  document.getElementById("botao-instalar").hidden = true;
+});
+
+window.addEventListener("appinstalled", () => {
+  document.getElementById("botao-instalar").hidden = true;
+});
 
 const modoDemonstracao = !CONFIG.API_URL;
 
