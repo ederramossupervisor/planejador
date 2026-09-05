@@ -6,7 +6,7 @@
 // de partida se a página for recarregada.
 // ============================================================
 const CONFIG = {
-  API_URL: "", // ex: "https://script.google.com/macros/s/AKfycb.../exec"
+  API_URL: "https://script.google.com/macros/s/AKfycbzZKFc08__uL3yL5u89G4g_pfEf-ZO8JG7r7e8KyDfc5nxg98D71630mIn3J-oc19WSnQ/exec", // ex: "https://script.google.com/macros/s/AKfycb.../exec"
 };
 
 // ---------- PWA: instalação e Service Worker ----------
